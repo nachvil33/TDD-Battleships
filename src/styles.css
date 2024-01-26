@@ -3,10 +3,9 @@ body {
   display: flex;
   height: 100vh;
   margin: 0;
-  background-image: url('backgroundbatleships.png'); 
+  background-image: url('backgroundbattleships.png'); /* Corregir la ruta de la imagen de fondo */
   background-size: cover;
 }
-
 
 #game-container {
   display: flex;
@@ -25,10 +24,11 @@ body {
 }
 
 #start-button {
-  max-width: 200px; /* Ajusta el tamaño según tus necesidades */
+  max-width: 200px; 
   padding: 10px;
-  margin: 0 auto; /* Centrar el botón */
+  margin: 0 auto; 
 }
+
 .ship-container {
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +63,6 @@ body {
   grid-template-rows: repeat(10, 1fr);
   gap: 2px;
 }
-
 
 .player-cell, .computer-cell {
   border: 1px solid #1a0303;
