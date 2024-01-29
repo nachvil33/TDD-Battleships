@@ -25,18 +25,18 @@ function initBoard(board: HTMLElement, cellClass: string): void {
 }
 
 function addEvents(board: HTMLElement, cellClass: string): void {
-  board.addEventListener('click', (event) => {
+  board.addEventListener('click', (event: MouseEvent) => {
     const targetCell = event.target as HTMLElement;
     if (targetCell.classList.contains(cellClass)) {
       console.log('Cell clicked:', targetCell.dataset.row, targetCell.dataset.col);
     }
   });
 
-  board.addEventListener('dragover', (event) => {
+  board.addEventListener('dragover', (event: DragEvent) => {
     event.preventDefault();
   });
 
-  board.addEventListener('drop', (event) => {
+  board.addEventListener('drop', (event: DragEvent) => {
     const targetCell = event.target as HTMLElement;
     const draggedShip = document.querySelector('.dragging') as HTMLElement;
 
@@ -51,15 +51,17 @@ function addDraggableShips(container: HTMLElement): void {
   const ships = container.querySelectorAll('.ship');
 
   ships.forEach((ship) => {
-    ship.addEventListener('dragstart', (event: DragEvent) => {
+    const draggedShip = ship as HTMLElement;
+
+    draggedShip.addEventListener('dragstart', (event: DragEvent) => {
       if (event.dataTransfer) {
-        ship.classList.add('dragging');
-        event.dataTransfer.setData('text/plain', ship.id);
+        event.dataTransfer.setData('text/plain', draggedShip.id);
       }
+      draggedShip.classList.add('dragging');
     });
 
-    ship.addEventListener('dragend', () => {
-      ship.classList.remove('dragging');
+    draggedShip.addEventListener('dragend', (event: DragEvent) => {
+      draggedShip.classList.remove('dragging');
     });
   });
 }
