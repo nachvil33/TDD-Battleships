@@ -1,6 +1,6 @@
-const createShip = require('./ship');
-const createGameboard = require('./gameboard');
-const createPlayer = require('./player');
+import createShip from './ship.js';
+import createGameboard from './gameboard.js';
+import createPlayer from './player.js';
 
 function dragStart(e) {
     const shipType = e.target.dataset.ship;

@@ -3,7 +3,7 @@ body {
   display: flex;
   height: 100vh;
   margin: 0;
-  background-image: url('backgroundbattleships.png'); /* Corregir la ruta de la imagen de fondo */
+  background-image: url('./backgroundbatleships.png'); 
   background-size: cover;
 }
 
