@@ -108,7 +108,7 @@ function updateCard(board, type = 'Player') {
       [cruiser, domElements().player1CruiserQuantity],
       [submarine, domElements().player1SubmarineQuantity],
       [destroyer, domElements().player1DestroyerQuantity],
-      [patroller, domElements().player1BoatQuantity],
+      [boat, domElements().player1BoatQuantity],
     ];
   } else {
     ships = [

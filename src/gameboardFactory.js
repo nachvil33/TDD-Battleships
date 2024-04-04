@@ -29,10 +29,10 @@ function getHitShip(coordinates, ships) {
 }
 
 function validateName(name) {
-  // aircraftcarrier, Battleship, Cruiser, Submarine, Destroyer, boat
-  if (name !== 'aircraftcarrier' && name !== 'Battleship' && name !== 'Cruiser'
-  && name !== 'Submarine' && name !== 'Destroyer' && name !== 'boat') {
-    throw new Error('Ship name must be aircraftcarrier, Battleship, Cruiser, Submarine, Destroyer or boat');
+  // Aircraftcarrier, Battleship, Cruiser, Submarine, Destroyer, boat
+  if (name !== 'Aircraftcarrier' && name !== 'Battleship' && name !== 'Cruiser'
+  && name !== 'Submarine' && name !== 'Destroyer' && name !== 'Boat') {
+    throw new Error('Ship name must be Aircraftcarrier, Battleship, Cruiser, Submarine, Destroyer or Boat');
   }
 }
 

@@ -1,4 +1,3 @@
-// Get the images from webpack
 import aircraftcarrier from './images/aircraftcarrier.png';
 import aircraftcarrier1 from './images/aircraftcarrier1.png';
 import aircraftcarrier2 from './images/aircraftcarrier2.png';
@@ -68,7 +67,7 @@ const destroyerShip = {
 };
 
 const boatShip = {
-  name: 'boat',
+  name: 'Boat',
   size: 2,
   fullImage: boat,
   images: [boat1, boat2],
