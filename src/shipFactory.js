@@ -2,13 +2,13 @@ export function createShip(shipData) {
   const ship = {
     name: shipData.name,
     size: shipData.size,
-    hits: 0,
+    hits: [],
     images: shipData.images,
     isSunk() {
-      return this.hits === this.size;
+      return this.hits.length === this.size;
     },
-    hit() {
-      this.hits++;
+    hit(coordinate) {
+      this.hits.push(coordinate); // Añadir coordenadas del golpe
     },
   };
   return ship;
