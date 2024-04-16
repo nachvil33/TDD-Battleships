@@ -1,14 +1,12 @@
-export function createShip(shipData) {
+export default function createShip(length) {
   const ship = {
-    name: shipData.name,
-    size: shipData.size,
+    length,
     hits: [],
-    images: shipData.images,
-    isSunk() {
-      return this.hits.length === this.size;
+    hit(position) {
+      this.hits.push(position);
     },
-    hit(coordinate) {
-      this.hits.push(coordinate); // Añadir coordenadas del golpe
+    isSunk() {
+      return this.hits.length === this.length;
     },
   };
   return ship;

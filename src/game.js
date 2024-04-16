@@ -1,25 +1,23 @@
-import { gameboardFactory } from './gameboardFactory.js';
-import { createShip } from './shipFactory.js';
+import { gameboardFactory } from './gameboardFactory.js'; // Asumiendo que gameboardFactory también es un export default
+import createShip from './shipFactory.js'; // Corregido para importar el default correctamente
 
 export default () => {
   const game = {
-    // properties
     actualPlayer: 1,
     gameStarted: false,
     playerBoard: gameboardFactory(),
     computerBoard: gameboardFactory(),
-    // methods
     changePlayer() {
       this.actualPlayer = this.actualPlayer === 1 ? 2 : 1;
     },
     randomPlaceShips(board) {
       const ships = [
-        { name: 'Aircraftcarrier', value: createShip({size: 5}) },
-        { name: 'Battleship', value: createShip({size: 4}) },
-        { name: 'Cruiser', value: createShip({size: 3}) },
-        { name: 'Submarine', value: createShip({size: 3}) },
-        { name: 'Destroyer', value: createShip({size: 2}) },
-        { name: 'Boat', value: createShip({size: 2}) },
+        { name: 'Aircraftcarrier', value: createShip(5) },
+        { name: 'Battleship', value: createShip(4) },
+        { name: 'Cruiser', value: createShip(3) },
+        { name: 'Submarine', value: createShip(3) },
+        { name: 'Destroyer', value: createShip(2) },
+        { name: 'Boat', value: createShip(2) },
       ];
       ships.forEach((ship) => {
         let coordinates = [];
@@ -49,22 +47,17 @@ export default () => {
     },
     checkValidAttack(x, y) {
       const coords = [x, y];
-      // check if the game is started
       if (!this.gameStarted) {
         throw new Error('You need to start the game');
       }
-      // check if the coordinates are valid
       if (x < 0 || x > 9 || y < 0 || y > 9) {
         throw new Error('Coordinates are not valid');
       }
-
-      // check if the coordinates are already hit
       const misses = this.computerBoard.missedAttacks;
       const missed = misses.some((miss) => miss[0] === coords[0] && miss[1] === coords[1]);
 
       const hits = this.computerBoard.ships.map((ship) => ship.hits);
-      const hitted = hits.some((hit) => hit.some((hitCoords) => hitCoords[0] === coords[0]
-        && hitCoords[1] === coords[1]));
+      const hitted = hits.some((hit) => hit.some((hitCoords) => hitCoords[0] === coords[0] && hitCoords[1] === coords[1]));
       if (missed || hitted) {
         throw new Error('You already attacked this coordinates');
       }
@@ -73,9 +66,7 @@ export default () => {
     playerAttack(x, y) {
       if (this.checkValidAttack(x, y)) {
         this.computerBoard.receiveAttack([x, y]);
-        // Check if the attack hit a ship
-        if (this.computerBoard.ships.some((ship) => ship.hits.some((hit) => hit[0] === x
-          && hit[1] === y))) {
+        if (this.computerBoard.ships.some((ship) => ship.hits.some((hit) => hit[0] === x && hit[1] === y))) {
           return 'hit';
         }
         this.changePlayer();
@@ -88,7 +79,6 @@ export default () => {
       return 'missAndHit';
     },
     computerAttack(hits = 0) {
-      // check if the game is started
       if (!this.gameStarted) {
         throw new Error('You need to start the game');
       }
@@ -96,16 +86,11 @@ export default () => {
         Math.floor(Math.random() * 10),
         Math.floor(Math.random() * 10),
       ];
-      // check if the coordinates are already hit (using .missedAttacks)
-      if (this.playerBoard.missedAttacks
-        .some((missedAttack) => missedAttack[0] === coordinates[0]
-        && missedAttack[1] === coordinates[1])) {
+      if (this.playerBoard.missedAttacks.some((missedAttack) => missedAttack[0] === coordinates[0] && missedAttack[1] === coordinates[1])) {
         this.computerAttack();
       } else {
         this.playerBoard.receiveAttack(coordinates);
-        // Check if the attack hit a ship
-        if (this.playerBoard.ships.some((ship) => ship.hits.some((hit) => hit[0] === coordinates[0]
-          && hit[1] === coordinates[1]))) {
+        if (this.playerBoard.ships.some((ship) => ship.hits.some((hit) => hit[0] === coordinates[0] && hit[1] === coordinates[1]))) {
           this.computerAttack(hits + 1);
           return 'hit';
         }
@@ -117,7 +102,6 @@ export default () => {
       return hits;
     },
     gameEnd() {
-      // check if the game is started
       if (!this.gameStarted) {
         throw new Error('You need to start the game');
       }

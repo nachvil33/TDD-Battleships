@@ -1,18 +1,16 @@
-import { randomAttack } from './helpers.js';
+import { gameboardFactory } from './gameboardFactory.js';
 
-export function createPlayer(gameboard, difficulty = 'basic') {
-  function takeTurn(enemyGameboard) {
-    let target;
-    switch (difficulty) {
-      case 'basic':
-        target = randomAttack();
-        break;
-      default:
-        target = randomAttack();
-    }
-    const result = enemyGameboard.receiveAttack(target.row, target.col);
-    return { ...target, result };
-  }
+export default function Player() {
+  // Create Gameboard.
+  const gameboard = gameboardFactory();
 
-  return { takeTurn };
+  // Attack enemy Gameboard.
+  const attack = (enemyGameboard, x, y) => {
+    enemyGameboard.receiveAttack([x, y]);
+  };
+
+  // Return Gameboard.
+  const getBoard = () => gameboard;
+
+  return { attack, getBoard };
 }
