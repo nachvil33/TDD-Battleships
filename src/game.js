@@ -1,5 +1,5 @@
-import { gameboardFactory } from './gameboardFactory.js'; // Asumiendo que gameboardFactory también es un export default
-import createShip from './shipFactory.js'; // Corregido para importar el default correctamente
+import { gameboardFactory } from './gameboardFactory.js'; 
+import createShip from './shipFactory.js'; 
 
 export default () => {
   const game = {
@@ -15,7 +15,7 @@ export default () => {
         { name: 'Aircraftcarrier', value: createShip(5) },
         { name: 'Battleship', value: createShip(4) },
         { name: 'Cruiser', value: createShip(3) },
-        { name: 'Submarine', value: createShip(3) },
+        { name: 'Submarine', value: createShip(2) },
         { name: 'Destroyer', value: createShip(2) },
         { name: 'Boat', value: createShip(2) },
       ];
@@ -42,7 +42,7 @@ export default () => {
       if (this.playerBoard.ships.length >= 6 && this.computerBoard.ships.length >= 6) {
         this.gameStarted = true;
       } else {
-        throw new Error('You need to place all the ships');
+        throw new Error('Place all your ships');
       }
     },
     checkValidAttack(x, y) {

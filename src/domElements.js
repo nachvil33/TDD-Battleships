@@ -30,7 +30,7 @@ const player1BoatQuantity = player1Boat.querySelector('#quantity');
 
 // Get the DOM elements from the computer cards
 const player2Card = document.getElementById('player2Card');
-// Carrier
+// Aircraftcarrier
 const player2Aircraftcarrier = player2Card.querySelector('#aircraftcarrier');
 const player2AircraftcarrierQuantity = player2Aircraftcarrier.querySelector('#quantity');
 // Battleship
@@ -45,7 +45,7 @@ const player2CruiserQuantity = player2Cruiser.querySelector('#quantity');
 // Destroyer
 const player2Destroyer = player2Card.querySelector('#destroyer');
 const player2DestroyerQuantity = player2Destroyer.querySelector('#quantity');
-// patrol ship
+// boat ship
 const player2Boat = player2Card.querySelector('#boat');
 const player2BoatQuantity = player2Boat.querySelector('#quantity');
 

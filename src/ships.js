@@ -54,7 +54,7 @@ const cruiserShip = {
 
 const submarineShip = {
   name: 'Submarine',
-  size: 3,
+  size: 2,
   fullImage: submarine,
   images: [submarine1, submarine2,],
 };

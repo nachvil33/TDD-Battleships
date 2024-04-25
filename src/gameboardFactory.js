@@ -97,12 +97,17 @@ export function gameboardFactory() {
       if (boardValidation(name, length, coordinates, orientation, this.ships) === false) {
         return;
       }
-
-      const ship = createShip({size: length, name: name}); // Ajustado para incluir el nombre del barco si es necesario
+      
+      //create ship function
+      const ship = createShip(length); 
+      ship.name = name;
       ship.coordinates = getShipCoordinates(coordinates, length, orientation);
 
       // check if ship is off the board
-      const shipOffBoard = ship.coordinates.some(([x, y]) => x < 0 || x > 9 || y < 0 || y > 9);
+      const shipOffBoard = ship.coordinates.some((shipCoordinate) => {
+        const [x, y] = shipCoordinate;
+        return x < 0 || x > 9 || y < 0 || y > 9;
+      });
       if (shipOffBoard) {
         throw new Error('Ships cannot be placed off the board');
       }
@@ -112,14 +117,12 @@ export function gameboardFactory() {
     receiveAttack(coordinates) {
       const shipHit = getHitShip(coordinates, this.ships);
       if (shipHit) {
-        // Aquí necesitas asegurarte de que existe y funciona el método hit en el objeto ship
-        shipHit.hit(coordinates); // Asegúrate de que el objeto ship tenga un método hit que funcione como esperas.
+        shipHit.hit(coordinates); 
       } else {
         this.missedAttacks.push(coordinates);
       }
     },
     allShipsSunk() {
-      // Asegúrate de que todos los barcos tienen y pueden llamar correctamente a isSunk
       return this.ships.every(ship => ship.isSunk());
     },
   };
