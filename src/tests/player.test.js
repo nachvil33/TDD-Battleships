@@ -1,5 +1,5 @@
-import { createPlayer } from './player';
-import { createGameboard } from './gameboardFactory';
+import { createPlayer } from '../player';
+import { createGameboard } from '../gameboardFactory';
 
 test('createPlayer returns an object with the correct properties', () => {
   const gameboard = createGameboard();

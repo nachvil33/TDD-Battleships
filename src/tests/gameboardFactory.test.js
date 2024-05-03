@@ -58,7 +58,6 @@ test('receiveAttack records missed attack on empty cell', () => {
   gameboard.receiveAttack(1, 1);
 
   expect(mockShip.hit).not.toHaveBeenCalled();
-  // Add more assertions for missed attack handling if needed
 });
 
 test('allShipsSunk returns true when all ships are sunk', () => {

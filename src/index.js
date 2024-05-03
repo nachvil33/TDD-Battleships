@@ -5,6 +5,7 @@ import {
   updatePlacingShip,
   createAlert,
   startPlacing,
+  handleRotateTextClick,
 } from './domManager.js';
 import game from './game.js';
 
@@ -20,7 +21,10 @@ showAction('enemy', 'Waiting For Ships', 'alert');
 
 updatePlacingShip('Aircraftcarrier');
 
-// Show the alert
-createAlert('success', 'Game started, place your ships (Press R to rotate)');
+const alertMessage = 'Game started, place your ships <span id="rotateText">(Press R to rotate)</span>';
+createAlert('success', alertMessage);
+
+// Add event listener to the "Press R to rotate" text
+handleRotateTextClick(); // Llama a la función handleRotateTextClick para manejar el evento de clic
 
 startPlacing(gameInstance, 'horizontal', 'Aircraftcarrier');

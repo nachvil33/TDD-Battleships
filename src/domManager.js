@@ -175,7 +175,16 @@ export function showAction(type, message, color = 'green') {
     }
   }
 }
-
+export function handleRotateTextClick() {
+  const rotateText = document.getElementById('rotateText');
+  rotateText.addEventListener('click', () => {
+    // Simular la pulsación de la tecla "R" al hacer clic en el texto
+    const event = new KeyboardEvent('keydown', {
+      key: 'r',
+    });
+    document.dispatchEvent(event);
+  });
+}  
 function checkValidMove(board, cell, orientation, shipLength, shipName) {
   const x = parseInt(cell.getAttribute('data-x'), 10);
   const y = parseInt(cell.getAttribute('data-y'), 10);
@@ -282,13 +291,13 @@ function startAttacking(gameInstance) {
           const attack = gameInstance.playerAttack(x, y);
           if (attack === 'hit') {
             cell.classList.add('hit');
-            createAlert('success', 'You hit a ship!, keep going!');
+            createAlert('success', 'Just hit a ship!, One more try till enemy move!');
           } else if (attack === 'doubleMiss') {
             cell.classList.add('miss');
-            createAlert('none', 'You missed! also the computer missed!');
+            createAlert('none', 'Your torpedo just failed! also the enemy missed!');
           } else if (attack === 'missAndHit') {
             cell.classList.add('miss');
-            createAlert('danger', 'You missed! the computer hit a ship!');
+            createAlert('danger', 'Your torpedo just failed! also the enemy hit a ship!');
           }
           updateGrid('enemy', gameInstance.computerBoard);
           updateGrid('player', gameInstance.playerBoard);
@@ -341,15 +350,15 @@ export function startPlacing(gameInstance, orientation, shipName) {
         } else {
           placing = false;
           updatePlacingShip('none');
-          createAlert('success', 'All ships placed, placing computer ships');
-          showAction('player', 'Waiting for computer', 'alert');
+          createAlert('you hit!', 'All ships placed, placing enemy`s ships');
+          showAction('player', 'Waiting for enemy move', 'alert');
           showAction('enemy', 'Placing ships');
           // wait 3 second before placing computer ships (simulates thinking)
           setTimeout(() => {
             gameInstance.randomPlaceShips(gameInstance.computerBoard);
             updateCard(gameInstance.computerBoard, 'enemy');
             gameInstance.startGame();
-            createAlert('success', 'All ships placed, Attack!');
+            createAlert('success', 'All ships placed, start the war!');
             showAction('player', 'Attack the enemy!');
             showAction('enemy', 'Waiting for attack', 'alert');
             startAttacking(gameInstance);
@@ -358,4 +367,4 @@ export function startPlacing(gameInstance, orientation, shipName) {
       }
     });
   });
-}
+  }

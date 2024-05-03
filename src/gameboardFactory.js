@@ -109,7 +109,7 @@ export function gameboardFactory() {
         return x < 0 || x > 9 || y < 0 || y > 9;
       });
       if (shipOffBoard) {
-        throw new Error('Ships cannot be placed off the board');
+        throw new Error('Placed off the board!!');
       }
 
       this.ships.push(ship);

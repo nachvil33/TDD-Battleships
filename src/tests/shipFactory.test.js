@@ -1,5 +1,5 @@
 // shipFactory.test.js
-import { createShip } from './shipFactory';
+import { createShip } from '../shipFactory';
 
 test('createShip returns an object with the correct properties', () => {
   const shipData = {

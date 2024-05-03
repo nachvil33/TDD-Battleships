@@ -38,3 +38,8 @@
 .has-ocean {
   background-image: url(./images/backgroundbatleships.png);
 }
+
+#rotateText {
+  text-decoration: underline;
+  cursor: pointer;
+}
